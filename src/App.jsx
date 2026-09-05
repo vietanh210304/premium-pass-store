@@ -4,7 +4,6 @@ import {
   Check,
   Crown,
   Headphones,
-  Menu,
   Music2,
   Play,
   ShieldCheck,
@@ -17,22 +16,22 @@ const products = [
   {
     id: 'youtube',
     name: 'YouTube Premium',
-    subtitle: 'Giải trí không giới hạn',
-    price: '79.000đ',
-    cadence: '/ tháng',
+    subtitle: 'Entertainment, unlimited',
+    price: '$2.99',
+    cadence: '/ month',
     accent: 'red',
     icon: Play,
-    features: ['Không quảng cáo', 'Phát trong nền', 'Kèm YouTube Music'],
+    features: ['Ad-free streaming', 'Background playback', 'Includes YouTube Music'],
   },
   {
     id: 'spotify',
     name: 'Spotify Premium',
-    subtitle: 'Âm nhạc theo cách của bạn',
-    price: '59.000đ',
-    cadence: '/ tháng',
+    subtitle: 'Music, your way',
+    price: '$2.49',
+    cadence: '/ month',
     accent: 'green',
     icon: Headphones,
-    features: ['Nghe nhạc offline', 'Âm thanh Lossless', 'Bỏ qua không giới hạn'],
+    features: ['Listen offline', 'Lossless audio', 'Unlimited skips'],
   },
 ]
 
@@ -69,7 +68,7 @@ function ProductCard({ product, onBuy }) {
       </div>
 
       <button className="buy-button" onClick={() => onBuy(product)}>
-        Mua ngay <ArrowRight size={17} />
+        Buy now <ArrowRight size={17} />
       </button>
 
       <div className={`abstract-art ${isYoutube ? 'youtube-art' : 'spotify-art'}`} aria-hidden="true">
@@ -103,30 +102,30 @@ function CheckoutModal({ product, onClose }) {
         aria-labelledby="checkout-title"
         onMouseDown={(event) => event.stopPropagation()}
       >
-        <button className="close-button" onClick={onClose} aria-label="Đóng cửa sổ thanh toán">
+        <button className="close-button" onClick={onClose} aria-label="Close checkout">
           <X size={20} />
         </button>
 
         <div className="modal-icon"><Icon size={28} /></div>
-        <p className="modal-kicker">Sẵn sàng nâng cấp</p>
+        <p className="modal-kicker">Ready to upgrade</p>
         <h2 id="checkout-title">{product.name}</h2>
-        <p className="modal-description">Xác nhận gói Premium của bạn và nhận hướng dẫn kích hoạt ngay qua tin nhắn.</p>
+        <p className="modal-description">Confirm your Premium plan and we'll send activation details straight to your inbox.</p>
 
         <div className="summary">
           <div>
-            <span>Gói đã chọn</span>
+            <span>Selected plan</span>
             <strong>{product.name}</strong>
           </div>
           <div>
-            <span>Thanh toán hôm nay</span>
+            <span>Pay today</span>
             <strong>{product.price}<em>{product.cadence}</em></strong>
           </div>
         </div>
 
         <a className="payment-button" href="https://t.me/" target="_blank" rel="noreferrer">
-          <ShoppingBag size={18} /> Thanh toán qua Zalo/Telegram
+          <ShoppingBag size={18} /> Pay via Telegram
         </a>
-        <p className="secure-note"><ShieldCheck size={15} /> Hỗ trợ kích hoạt nhanh sau thanh toán</p>
+        <p className="secure-note"><ShieldCheck size={15} /> Fast activation after payment</p>
       </section>
     </div>
   )
@@ -139,15 +138,15 @@ function App() {
   return (
     <main>
       <nav className="navbar">
-        <a className="brand" href="#top" aria-label="Premium Pass - Trang chủ">
+        <a className="brand" href="#top" aria-label="Premium Pass - Home">
           <span className="brand-mark"><Crown size={16} fill="currentColor" /></span>
           <span>Premium Pass</span>
         </a>
         <div className={`nav-links ${menuOpen ? 'open' : ''}`}>
-          <a href="#goi-dich-vu" onClick={() => setMenuOpen(false)}>Gói dịch vụ</a>
-          <a href="#ve-chung-toi" onClick={() => setMenuOpen(false)}>Về chúng tôi</a>
+          <a href="#plans" onClick={() => setMenuOpen(false)}>Plans</a>
+          <a href="#why-us" onClick={() => setMenuOpen(false)}>Why us</a>
         </div>
-        <button className="cart-button" aria-label="Giỏ hàng" onClick={() => setMenuOpen((value) => !value)}>
+        <button className="cart-button" aria-label="Cart" onClick={() => setMenuOpen((value) => !value)}>
           {menuOpen ? <X size={20} /> : <><ShoppingBag size={20} /><span>0</span></>}
         </button>
       </nav>
@@ -156,24 +155,24 @@ function App() {
         <div className="hero-orb hero-orb-one" />
         <div className="hero-orb hero-orb-two" />
         <div className="hero-content">
-          <div className="announcement"><Sparkles size={14} /> Gói Premium chọn lọc</div>
-          <h1>Nâng tầm trải nghiệm <span>giải trí.</span></h1>
-          <p>Truy cập những dịch vụ yêu thích của bạn theo cách mượt mà, không giới hạn và đầy cảm hứng.</p>
-          <a className="hero-button" href="#goi-dich-vu">Khám phá gói dịch vụ <ArrowRight size={18} /></a>
+          <div className="announcement"><Sparkles size={14} /> Curated premium picks</div>
+          <h1>Level up your <span>entertainment.</span></h1>
+          <p>Unlock the services you love with a smoother, ad-free, boundless experience.</p>
+          <a className="hero-button" href="#plans">Explore plans <ArrowRight size={18} /></a>
         </div>
-        <div className="hero-stat" aria-label="Hơn 1000 khách hàng tin dùng">
+        <div className="hero-stat" aria-label="More than 1,000 happy customers">
           <div className="avatar-stack"><i /><i /><i /></div>
-          <div><strong>1.000+</strong><span>khách hàng tin dùng</span></div>
+          <div><strong>1,000+</strong><span>happy customers</span></div>
         </div>
       </section>
 
-      <section className="products-section" id="goi-dich-vu">
+      <section className="products-section" id="plans">
         <div className="section-heading">
           <div>
-            <p className="section-kicker">Lựa chọn của bạn</p>
-            <h2>Đơn giản. Đúng gu. <span>Premium.</span></h2>
+            <p className="section-kicker">Your pick</p>
+            <h2>Simple. Refined. <span>Premium.</span></h2>
           </div>
-          <p>Chọn một gói phù hợp với nhịp sống số của bạn — kích hoạt nhanh, hỗ trợ tận tâm.</p>
+          <p>Pick the plan that fits your digital rhythm — instant activation and dedicated support included.</p>
         </div>
 
         <div className="products-grid">
@@ -181,15 +180,15 @@ function App() {
         </div>
       </section>
 
-      <section className="trust-section" id="ve-chung-toi">
-        <div><ShieldCheck size={21} /><span>Giao dịch minh bạch</span></div>
-        <div><Sparkles size={21} /><span>Kích hoạt nhanh chóng</span></div>
-        <div><Crown size={21} /><span>Hỗ trợ tận tâm</span></div>
+      <section className="trust-section" id="why-us">
+        <div><ShieldCheck size={21} /><span>Transparent transactions</span></div>
+        <div><Sparkles size={21} /><span>Lightning-fast activation</span></div>
+        <div><Crown size={21} /><span>Support that cares</span></div>
       </section>
 
       <footer>
         <a className="brand" href="#top"><span className="brand-mark"><Crown size={14} fill="currentColor" /></span><span>Premium Pass</span></a>
-        <p>© 2026 Premium Pass. Trải nghiệm tốt hơn, mỗi ngày.</p>
+        <p>© 2026 Premium Pass. A better experience, every day.</p>
       </footer>
 
       {selectedProduct && <CheckoutModal product={selectedProduct} onClose={() => setSelectedProduct(null)} />}
