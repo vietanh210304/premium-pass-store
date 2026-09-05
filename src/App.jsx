@@ -3,14 +3,12 @@ import {
   ArrowRight,
   Check,
   Crown,
-  Headphones,
-  Music2,
-  Play,
   ShieldCheck,
   ShoppingBag,
   Sparkles,
   X,
 } from 'lucide-react'
+import { YOUTUBE_LOGO, SPOTIFY_LOGO } from './brandLogos'
 
 const products = [
   {
@@ -20,7 +18,7 @@ const products = [
     price: '$2.99',
     cadence: '/ month',
     accent: 'red',
-    icon: Play,
+    badge: YOUTUBE_LOGO,
     features: ['Ad-free streaming', 'Background playback', 'Includes YouTube Music'],
   },
   {
@@ -30,21 +28,18 @@ const products = [
     price: '$2.49',
     cadence: '/ month',
     accent: 'green',
-    icon: Headphones,
+    badge: SPOTIFY_LOGO,
     features: ['Listen offline', 'Lossless audio', 'Unlimited skips'],
   },
 ]
 
 function ProductCard({ product, onBuy }) {
-  const Icon = product.icon
-  const isYoutube = product.id === 'youtube'
-
   return (
     <article className={`product-card ${product.accent}`}>
       <div className="card-glow" />
       <div className="card-topline">
-        <div className="product-icon" aria-hidden="true">
-          <Icon size={24} strokeWidth={2.1} />
+        <div className={`product-logo ${product.accent}`} aria-hidden="true">
+          {product.badge}
         </div>
         <span className="plan-badge">Premium</span>
       </div>
@@ -70,17 +65,11 @@ function ProductCard({ product, onBuy }) {
       <button className="buy-button" onClick={() => onBuy(product)}>
         Buy now <ArrowRight size={17} />
       </button>
-
-      <div className={`abstract-art ${isYoutube ? 'youtube-art' : 'spotify-art'}`} aria-hidden="true">
-        {isYoutube ? <Play fill="currentColor" size={40} /> : <Music2 size={42} />}
-      </div>
     </article>
   )
 }
 
 function CheckoutModal({ product, onClose }) {
-  const Icon = product?.icon
-
   useEffect(() => {
     const onKeyDown = (event) => event.key === 'Escape' && onClose()
     window.addEventListener('keydown', onKeyDown)
@@ -106,7 +95,7 @@ function CheckoutModal({ product, onClose }) {
           <X size={20} />
         </button>
 
-        <div className="modal-icon"><Icon size={28} /></div>
+        <div className={`modal-logo ${product.accent}`} aria-hidden="true">{product.badge}</div>
         <p className="modal-kicker">Ready to upgrade</p>
         <h2 id="checkout-title">{product.name}</h2>
         <p className="modal-description">Confirm your Premium plan and we'll send activation details straight to your inbox.</p>
